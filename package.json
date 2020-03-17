@@ -2,9 +2,11 @@
   "name": "automate-api-dockerization",
   "version": "1.0.0",
   "description": "simple api",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose --coverage",
+    "dev": "nodemon --exec babel-node ./src/server",
+    "start": "babel-node ./src/server"
   },
   "repository": {
     "type": "git",
