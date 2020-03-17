@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "simple api",
   "main": "server.js",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "scripts": {
     "test": "jest --verbose --coverage",
-    "dev": "nodemon --exec babel-node ./src/server",
-    "start": "babel-node ./src/server"
+    "dev": "nodemon --exec babel-node ./src/server.js",
+    "start": "babel-node ./src/server.js"
   },
   "repository": {
     "type": "git",

@@ -10,3 +10,5 @@ const startServer = () => {
     console.log(`running at http://${address}:${port}`);
   });
 };
+
+startServer();
