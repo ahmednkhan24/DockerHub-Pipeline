@@ -14,7 +14,7 @@ const data = [];
 
 const isObjectEmpty = (obj) => Object.entries(obj).length === 0;
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   res.status(200).json({ 
     success: true,
     count: data.length,
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
   if (isObjectEmpty(req.body) || !req.body.input) {
     res.status(400).json({
       success: false,
