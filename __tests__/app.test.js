@@ -17,15 +17,35 @@ describe('API GET endpoints', () => {
 });
 
 describe('API POST endpoints', () => {
-  const body = { payload: 'hello world' };
-  
+  const validRequestBody = { payload: 'hello world' };
+  const invalidRequestBody = { input: 'goodbye world' };
+  const errorMessage = 'Provide input';
+
   it('should POST root route - SUCCESS', async (done) => {
-    const response = await request.post('/').send(body);
+    const response = await request.post('/').send(validRequestBody);
 
     expect(response.status).toBe(201);
     expect(response.body.success).toBe(true);
     expect(response.body.count).toEqual(1);
-    expect(response.body.input).toEqual(body.payload);
+    expect(response.body.input).toEqual(validRequestBody.payload);
+    done();
+  });
+
+  it('should POST root route - FAIL: empty request body', async (done) => {
+    const response = await request.post('/').send({});
+
+    expect(response.status).toBe(400);
+    expect(response.body.success).toBe(false);
+    expect(response.body.message).toEqual(errorMessage);
+    done();
+  });
+
+  it('should POST root route - FAIL: invalid attribute in request body', async (done) => {
+    const response = await request.post('/').send(invalidRequestBody);
+
+    expect(response.status).toBe(400);
+    expect(response.body.success).toBe(false);
+    expect(response.body.message).toEqual(errorMessage);
     done();
   });
 });
