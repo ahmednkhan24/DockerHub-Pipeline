@@ -6,7 +6,7 @@ const request = supertest(api);
 
 describe('API GET endpoints', () => {
   it('should GET root route', async (done) => {
-    const response = await request.get('/');
+    const response = await request.get('/api/v1/');
 
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
@@ -14,7 +14,7 @@ describe('API GET endpoints', () => {
   });
 
   it('should GET data route', async (done) => {
-    const response = await request.get('/data');
+    const response = await request.get('/api/v1/data');
 
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
@@ -30,7 +30,7 @@ describe('API POST endpoints', () => {
   const errorMessage = 'Provide input';
 
   it('should POST data route - SUCCESS', async (done) => {
-    const response = await request.post('/data').send(validRequestBody);
+    const response = await request.post('/api/v1/data').send(validRequestBody);
 
     expect(response.status).toBe(201);
     expect(response.body.success).toBe(true);
@@ -40,7 +40,7 @@ describe('API POST endpoints', () => {
   });
 
   it('should POST data route - FAIL: empty request body', async (done) => {
-    const response = await request.post('/data').send({});
+    const response = await request.post('/api/v1/data').send({});
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
@@ -49,7 +49,7 @@ describe('API POST endpoints', () => {
   });
 
   it('should POST data route - FAIL: invalid attribute in request body', async (done) => {
-    const response = await request.post('/data').send(invalidRequestBody);
+    const response = await request.post('/api/v1/data').send(invalidRequestBody);
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);

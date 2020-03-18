@@ -10,6 +10,6 @@ const api = express();
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
 api.use(sanitizer());
-api.use(routes);
+api.use('/api/v1', routes);
 
 export default api;
