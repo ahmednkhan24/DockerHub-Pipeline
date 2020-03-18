@@ -3,6 +3,8 @@ import sanitizer from 'express-sanitizer';
 import bodyParser from 'body-parser';
 import dotenvSafe from 'dotenv-safe';
 
+import { isObjectEmpty } from './utils';
+
 dotenvSafe.config({ path: '.env' });
 
 const app = express();
@@ -11,8 +13,6 @@ app.use(bodyParser.json());
 app.use(sanitizer());
 
 const data = [];
-
-const isObjectEmpty = (obj) => Object.entries(obj).length === 0;
 
 app.get('/', async (req, res) => {
   res.status(200).json({ 
