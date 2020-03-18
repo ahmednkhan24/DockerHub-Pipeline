@@ -1,8 +1,8 @@
 import polyfill from 'babel-polyfill';
 import supertest from 'supertest';
-import app from '../src/app';
+import api from '../src/api';
 
-const request = supertest(app);
+const request = supertest(api);
 
 describe('API GET endpoints', () => {
   it('should GET root route', async (done) => {
