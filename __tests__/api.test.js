@@ -25,7 +25,7 @@ describe('API GET endpoints', () => {
 });
 
 describe('API POST endpoints', () => {
-  const validRequestBody = { payload: 'hello world' };
+  const validRequestBody = { payload: 'helloworld' };
   const invalidRequestBody = { input: 'goodbye world' };
   const errorMessage = 'Provide input';
 
@@ -55,5 +55,15 @@ describe('API POST endpoints', () => {
     expect(response.body.success).toBe(false);
     expect(response.body.message).toEqual(errorMessage);
     done();
+  });
+});
+
+describe('API PUT endpoints', () => {
+  const validRequestBody = { payload: 'helloworld' };
+  const invalidRequestBody = { input: 'goodbye world' };
+  const errorMessage = 'Provide input';
+
+  it('should PUT data route - SUCCESS', async (done) => {
+    const response = await request.post('/api/v1/data/').send({});
   });
 });
