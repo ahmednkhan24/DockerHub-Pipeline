@@ -45,20 +45,20 @@ app.put('/', async (req, res) => {
       message: 'Provide input',
     });
   }
-  const valueToFind = req.sanitize(req.body.oldPayload).toString();
-  const changeTo = req.sanitize(req.body.newPayload).toString();
-  const index = data.indexOf(valueToFind);
+  const oldInput = req.sanitize(req.body.oldPayload).toString();
+  const newInput = req.sanitize(req.body.newPayload).toString();
+  const index = data.indexOf(oldInput);
   if (index === -1) {
     return res.status(500).json({
       success: false,
       message: 'Not found',
     });
   }
-  data[index] = changeTo;
+  data[index] = newInput;
   return res.status(200).json({
     success: true,
     count: data.length,
-    oldValue: valueToFind,
+    oldValue: oldInput,
     newValue: data[index],
   });
 });
