@@ -63,5 +63,9 @@ app.put('/', async (req, res) => {
   });
 });
 
+app.delete('/', async (req, res) => {
+  return res.status(200).json({delete: 'success'});
+});
+
 
 export default app;
