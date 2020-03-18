@@ -1,24 +1,22 @@
-import express from 'express';
 import { isObjectEmpty } from './utils';
 
-const router = express.Router();
 const data = [];
 
-router.get('/', async (req, res) => {
+export const getRoot = async (req, res, next) => {
   return res.status(200).json({
     success: true,
   });
-});
+};
 
-router.get('/data', async (req, res) => {
+export const getData = async (req, res, next) => {
   return res.status(200).json({ 
     success: true,
     count: data.length,
     data: data,
   });
-});
+};
 
-router.post('/data', async (req, res) => {
+export const postData = async (req, res, next) => {
   if (isObjectEmpty(req.body) || !req.body.payload) {
     return res.status(400).json({
       success: false,
@@ -32,9 +30,9 @@ router.post('/data', async (req, res) => {
     count: data.length,
     input: input,
   });
-});
+};
 
-router.put('/data', async (req, res) => {
+export const putData = async (req, res, next) => {
   if (isObjectEmpty(req.body) || !req.body.oldPayload || !req.body.newPayload) {
     return res.status(400).json({
       success: false,
@@ -57,14 +55,14 @@ router.put('/data', async (req, res) => {
     oldValue: oldInput,
     newValue: data[index],
   });
-});
+};
 
-router.delete('/data', async (req, res) => {
+export const deleteData = async (req, res, next) => {
   return res.status(200).json({delete: 'success'});
-});
+};
 
-router.get('*', (req, res) => {
-  res.status(404).json({ 404: 'Not Found' });
-});
+export const getNotFound = async (req, res, next) => {
+  return res.status(404).json({ 404: 'Not Found' });
+};
 
 export default router;
