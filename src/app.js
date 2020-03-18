@@ -14,6 +14,12 @@ api.use(sanitizer());
 
 const data = [];
 
+api.get('/', async (req, res) => {
+  return res.status(200).json({
+    success: true,
+  });
+});
+
 api.get('/data', async (req, res) => {
   return res.status(200).json({ 
     success: true,
