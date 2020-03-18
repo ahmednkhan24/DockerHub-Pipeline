@@ -7,14 +7,14 @@ import { isObjectEmpty } from './utils';
 
 dotenvSafe.config({ path: '.env' });
 
-const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(sanitizer());
+const api = express();
+api.use(bodyParser.urlencoded({ extended: false }));
+api.use(bodyParser.json());
+api.use(sanitizer());
 
 const data = [];
 
-app.get('/', async (req, res) => {
+api.get('/', async (req, res) => {
   return res.status(200).json({ 
     success: true,
     count: data.length,
@@ -22,7 +22,7 @@ app.get('/', async (req, res) => {
   });
 });
 
-app.post('/', async (req, res) => {
+api.post('/', async (req, res) => {
   if (isObjectEmpty(req.body) || !req.body.payload) {
     return res.status(400).json({
       success: false,
@@ -38,7 +38,7 @@ app.post('/', async (req, res) => {
   });
 });
 
-app.put('/', async (req, res) => {
+api.put('/', async (req, res) => {
   if (isObjectEmpty(req.body) || !req.body.oldPayload || !req.body.newPayload) {
     return res.status(400).json({
       success: false,
@@ -63,8 +63,8 @@ app.put('/', async (req, res) => {
   });
 });
 
-app.delete('/', async (req, res) => {
+api.delete('/', async (req, res) => {
   return res.status(200).json({delete: 'success'});
 });
 
-export default app;
+export default api;
