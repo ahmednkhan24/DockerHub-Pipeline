@@ -5,7 +5,7 @@ import {
   postData,
   putData,
   deleteData,
-  getNotFound,
+  notFound,
 } from './controller';
 
 const router = express.Router();
@@ -13,6 +13,10 @@ const router = express.Router();
 router.route('/').get(getRoot);
 router.route('/data').get(getData).post(postData);
 router.route('/data/:id').put(putData).delete(deleteData);
-router.route('*').get(getNotFound);
+router.route('*')
+  .get(notFound)
+  .post(notFound)
+  .put(notFound)
+  .delete(notFound);
 
 export default router;

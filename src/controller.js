@@ -53,14 +53,14 @@ export const postData = async (req, res, next) => {
  * @access  Public
 */
 export const putData = async (req, res, next) => {
-  if (isObjectEmpty(req.body) || !req.body.oldPayload || !req.body.newPayload) {
+  if (isObjectEmpty(req.body) || req.body.payload) {
     return res.status(400).json({
       success: false,
       message: 'Provide input',
     });
   }
-  const oldInput = req.sanitize(req.body.oldPayload).toString();
-  const newInput = req.sanitize(req.body.newPayload).toString();
+  const oldInput = req.sanitize(req.params.payload).toString();
+  const newInput = req.sanitize(req.body.payload).toString();
   const index = data.indexOf(oldInput);
   if (index === -1) {
     return res.status(500).json({
@@ -91,6 +91,6 @@ export const deleteData = async (req, res, next) => {
  * @route   GET /api/v1/*
  * @access  Public
 */
-export const getNotFound = async (req, res, next) => {
+export const notFound = async (req, res, next) => {
   return res.status(404).json({ 404: 'Not Found' });
 };
