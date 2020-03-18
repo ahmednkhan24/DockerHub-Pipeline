@@ -15,7 +15,7 @@ app.use(sanitizer());
 const data = [];
 
 app.get('/', async (req, res) => {
-  res.status(200).json({ 
+  return res.status(200).json({ 
     success: true,
     count: data.length,
     data: data,
@@ -23,15 +23,15 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-  if (isObjectEmpty(req.body) || !req.body.input) {
-    res.status(400).json({
+  if (isObjectEmpty(req.body) || !req.body.payload) {
+    return res.status(400).json({
       success: false,
       message: 'Provide input',
     });
   }
-  const input = req.sanitize(req.body.input);
+  const input = req.sanitize(req.body.payload);
   data.push(input);
-  res.status(201).json({
+  return res.status(201).json({
     success: true,
     count: data.length,
     input: input,
