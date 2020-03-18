@@ -6,7 +6,7 @@ const request = supertest(app);
 
 describe('API GET endpoints', () => {
   it('should GET root route', async (done) => {
-    const response = await request.get('/');
+    const response = await request.get('/data');
 
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
@@ -22,7 +22,7 @@ describe('API POST endpoints', () => {
   const errorMessage = 'Provide input';
 
   it('should POST root route - SUCCESS', async (done) => {
-    const response = await request.post('/').send(validRequestBody);
+    const response = await request.post('/data').send(validRequestBody);
 
     expect(response.status).toBe(201);
     expect(response.body.success).toBe(true);
@@ -32,7 +32,7 @@ describe('API POST endpoints', () => {
   });
 
   it('should POST root route - FAIL: empty request body', async (done) => {
-    const response = await request.post('/').send({});
+    const response = await request.post('/data').send({});
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
@@ -41,7 +41,7 @@ describe('API POST endpoints', () => {
   });
 
   it('should POST root route - FAIL: invalid attribute in request body', async (done) => {
-    const response = await request.post('/').send(invalidRequestBody);
+    const response = await request.post('/data').send(invalidRequestBody);
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);

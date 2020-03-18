@@ -14,7 +14,7 @@ api.use(sanitizer());
 
 const data = [];
 
-api.get('/', async (req, res) => {
+api.get('/data', async (req, res) => {
   return res.status(200).json({ 
     success: true,
     count: data.length,
@@ -22,7 +22,7 @@ api.get('/', async (req, res) => {
   });
 });
 
-api.post('/', async (req, res) => {
+api.post('/data', async (req, res) => {
   if (isObjectEmpty(req.body) || !req.body.payload) {
     return res.status(400).json({
       success: false,
@@ -38,7 +38,7 @@ api.post('/', async (req, res) => {
   });
 });
 
-api.put('/', async (req, res) => {
+api.put('/data', async (req, res) => {
   if (isObjectEmpty(req.body) || !req.body.oldPayload || !req.body.newPayload) {
     return res.status(400).json({
       success: false,
@@ -63,7 +63,7 @@ api.put('/', async (req, res) => {
   });
 });
 
-api.delete('/', async (req, res) => {
+api.delete('/data', async (req, res) => {
   return res.status(200).json({delete: 'success'});
 });
 
