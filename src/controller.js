@@ -53,7 +53,7 @@ export const postData = async (req, res, next) => {
  * @access  Public
 */
 export const putData = async (req, res, next) => {
-  if (isObjectEmpty(req.body) || req.body.payload) {
+  if (isObjectEmpty(req.body) || !req.body.payload) {
     return res.status(400).json({
       success: false,
       message: 'Provide input',
