@@ -49,7 +49,7 @@ export const postData = async (req, res, next) => {
 
 /*
  * @desc    update data
- * @route   PUT /api/v1/data
+ * @route   PUT /api/v1/data/:id
  * @access  Public
 */
 export const putData = async (req, res, next) => {
@@ -79,7 +79,7 @@ export const putData = async (req, res, next) => {
 
 /*
  * @desc    delete data
- * @route   DELETE /api/v1/data
+ * @route   DELETE /api/v1/data/:id
  * @access  Public
 */
 export const deleteData = async (req, res, next) => {
