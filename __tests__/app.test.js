@@ -4,7 +4,7 @@ import app from '../src/app';
 
 const request = supertest(app);
 
-describe('API endpoints', () => {
+describe('API GET endpoints', () => {
   it('should GET root route', async (done) => {
     const response = await request.get('/');
 
@@ -14,11 +14,14 @@ describe('API endpoints', () => {
     expect(response.body.data).toEqual([]);
     done();
   });
+});
 
+describe('API POST endpoints', () => {
+  const body = { payload: 'hello world' };
+  
   it('should POST root route - SUCCESS', async (done) => {
-    const body = { payload: 'hello world' };
     const response = await request.post('/').send(body);
-    
+
     expect(response.status).toBe(201);
     expect(response.body.success).toBe(true);
     expect(response.body.count).toEqual(1);
