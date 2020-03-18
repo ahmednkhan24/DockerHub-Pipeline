@@ -64,5 +64,3 @@ export const deleteData = async (req, res, next) => {
 export const getNotFound = async (req, res, next) => {
   return res.status(404).json({ 404: 'Not Found' });
 };
-
-export default router;
