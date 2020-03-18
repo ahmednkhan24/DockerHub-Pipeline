@@ -4,12 +4,6 @@ import app from '../src/app';
 
 const request = supertest(app);
 
-describe('Sample Test', () => {
-  it('should test that true === true', () => {
-    expect(true).toBe(true);
-  });
-});
-
 describe('API endpoints', () => {
   it('should GET root route', async (done) => {
     const response = await request.get('/');
