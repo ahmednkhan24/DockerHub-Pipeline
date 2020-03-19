@@ -79,7 +79,7 @@ describe('API PUT endpoints', () => {
 });
 
 describe('API seed/purge endpoints', () => {
-  const sampleData = getSampleData();
+  const sampleData = getSampleData().map(d => d.toString());
 
   it('should POST seed data', async (done) => {
     const response = await request.post('/api/v1/seed');
