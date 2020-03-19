@@ -1,6 +1,7 @@
 import polyfill from 'babel-polyfill';
 import supertest from 'supertest';
 import api from '../src/api';
+import { getSampleData } from '../src/utils';
 
 const request = supertest(api);
 
@@ -37,6 +38,8 @@ describe('API POST endpoints', () => {
     expect(response.body.success).toBe(true);
     expect(response.body.count).toEqual(1);
     expect(response.body.input).toEqual(validRequestBody.payload);
+
+    await request.delete('/api/v1/seed');
     done();
   });
 
@@ -61,10 +64,36 @@ describe('API POST endpoints', () => {
 
 describe('API PUT endpoints', () => {
   it('should PUT data route - SUCCESS', async (done) => {
-    // validRequestBody should have already been inserted during the
+    await request.post('/api/v1/data').send(validRequestBody);
+
     const response = await request.put(`/api/v1/data/${validRequestBody.payload}`).send(updatedValidRequestBody);
     expect(response.status).toBe(200);
 
+    await request.delete('/api/v1/seed');
+    done();
+  });
+});
+
+describe('API seed/purge endpoints', () => {
+  const sampleData = getSampleData();
+
+  it('should POST seed data', async (done) => {
+    const response = await request.post('/api/v1/seed');
+
+    expect(response.status).toBe(201);
+    expect(response.body.success).toBe(true);
+    expect(response.body.count).toEqual(sampleData.length);
+    expect(JSON.stringify(response.body.data)).toEqual(JSON.stringify(sampleData));
+    done();
+  });
+
+  it('should DELETE purge data', async (done) => {
+    const response = await request.delete('/api/v1/seed');
+
+    expect(response.status).toBe(200);
+    expect(response.body.success).toBe(true);
+    expect(response.body.count).toEqual(0);
+    expect(response.body.data).toEqual([]);
     done();
   });
 });
