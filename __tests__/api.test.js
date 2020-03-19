@@ -8,7 +8,7 @@ const request = supertest(api);
 const validRequestBody = { payload: 'helloworld' };
 const updatedValidRequestBody = { payload: 'helloworldagain' };
 const invalidRequestBody = { input: 'goodbyeworld' };
-const inputErrorMessage = 'Provide input';
+const inputErrorMessage = 'Provide Input';
 const notFoundErrorMessage = 'Not Found';
 
 describe('API GET endpoints', () => {

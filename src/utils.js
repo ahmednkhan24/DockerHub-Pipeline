@@ -5,7 +5,7 @@ const sampleData = [
   'goodbyeworld',
 ];
 
-const inputError = 'Provide input';
+const inputError = 'Provide Input';
 const notFoundError = 'Not Found';
 
 export const getErrorMessage = (errCode) => errCode === 400 ? inputError : notFoundError; 
