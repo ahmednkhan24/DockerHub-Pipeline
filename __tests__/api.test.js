@@ -4,6 +4,11 @@ import api from '../src/api';
 
 const request = supertest(api);
 
+const validRequestBody = { payload: 'helloworld' };
+const updatedValidRequestBody = { payload: 'helloworldagain' };
+const invalidRequestBody = { input: 'goodbyeworld' };
+const errorMessage = 'Provide input';
+
 describe('API GET endpoints', () => {
   it('should GET root route', async (done) => {
     const response = await request.get('/api/v1/');
@@ -25,10 +30,6 @@ describe('API GET endpoints', () => {
 });
 
 describe('API POST endpoints', () => {
-  const validRequestBody = { payload: 'helloworld' };
-  const invalidRequestBody = { input: 'goodbye world' };
-  const errorMessage = 'Provide input';
-
   it('should POST data route - SUCCESS', async (done) => {
     const response = await request.post('/api/v1/data').send(validRequestBody);
 
@@ -59,11 +60,11 @@ describe('API POST endpoints', () => {
 });
 
 describe('API PUT endpoints', () => {
-  const validRequestBody = { payload: 'helloworld' };
-  const invalidRequestBody = { input: 'goodbye world' };
-  const errorMessage = 'Provide input';
-
   it('should PUT data route - SUCCESS', async (done) => {
-    const response = await request.post('/api/v1/data/').send({});
+    // validRequestBody should have already been inserted during the
+    const response = await request.put(`/api/v1/data/${validRequestBody.payload}`).send(updatedValidRequestBody);
+    expect(response.status).toBe(200);
+
+    done();
   });
 });

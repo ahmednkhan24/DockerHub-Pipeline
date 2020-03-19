@@ -86,6 +86,11 @@ export const deleteData = async (req, res, next) => {
   return res.status(200).json({delete: 'success'});
 };
 
+/*
+ * @desc    add sample data
+ * @route   POST /api/v1/seed
+ * @access  Public
+*/
 export const seedData = async (req, res, next) => {
   getSampleData().forEach(d => data.push(d));
   return res.status(201).json({ 
@@ -95,8 +100,18 @@ export const seedData = async (req, res, next) => {
   });
 };
 
+/*
+ * @desc    delete sample data and free memory
+ * @route   DELETE /api/v1/seed
+ * @access  Public
+*/
 export const purgeData = async (req, res, next) => {
-
+  data.splice(0, data.length);
+  return res.status(200).json({ 
+    success: true,
+    count: data.length,
+    data: data,
+  });
 };
 
 /*
