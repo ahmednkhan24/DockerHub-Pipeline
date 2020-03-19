@@ -13,7 +13,7 @@ const notFoundErrorMessage = 'Not Found';
 
 describe('API GET endpoints', () => {
   it('should GET root route', async (done) => {
-    const response = await request.get('/api/v1/');
+    const response = await request.get('/');
 
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
@@ -21,7 +21,7 @@ describe('API GET endpoints', () => {
   });
 
   it('should GET data route', async (done) => {
-    const response = await request.get('/api/v1/data');
+    const response = await request.get('/data');
 
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
@@ -33,19 +33,19 @@ describe('API GET endpoints', () => {
 
 describe('API POST endpoints', () => {
   it('should POST data route - SUCCESS', async (done) => {
-    const response = await request.post('/api/v1/data').send(validRequestBody);
+    const response = await request.post('/data').send(validRequestBody);
 
     expect(response.status).toBe(201);
     expect(response.body.success).toBe(true);
     expect(response.body.count).toEqual(1);
     expect(response.body.input).toEqual(validRequestBody.payload);
 
-    await request.delete('/api/v1/seed');
+    await request.delete('/seed');
     done();
   });
 
   it('should POST data route - FAIL: empty request body', async (done) => {
-    const response = await request.post('/api/v1/data').send({});
+    const response = await request.post('/data').send({});
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
@@ -54,7 +54,7 @@ describe('API POST endpoints', () => {
   });
 
   it('should POST data route - FAIL: invalid attribute in request body', async (done) => {
-    const response = await request.post('/api/v1/data').send(invalidRequestBody);
+    const response = await request.post('/data').send(invalidRequestBody);
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
@@ -65,9 +65,9 @@ describe('API POST endpoints', () => {
 
 describe('API PUT endpoints', () => {
   it('should PUT data route - SUCCESS', async (done) => {
-    await request.post('/api/v1/data').send(validRequestBody);
+    await request.post('/data').send(validRequestBody);
 
-    const response = await request.put(`/api/v1/data/${validRequestBody.payload}`).send(updatedValidRequestBody);
+    const response = await request.put(`/data/${validRequestBody.payload}`).send(updatedValidRequestBody);
 
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
@@ -75,12 +75,12 @@ describe('API PUT endpoints', () => {
     expect(response.body.oldValue).toEqual(validRequestBody.payload);
     expect(response.body.newValue).toEqual(updatedValidRequestBody.payload);
 
-    await request.delete('/api/v1/seed');
+    await request.delete('/seed');
     done();
   });
 
   it('should PUT data route - FAIL: empty request body', async (done) => {
-    const response = await request.put('/api/v1/data/ANY').send({});
+    const response = await request.put('/data/ANY').send({});
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
@@ -89,7 +89,7 @@ describe('API PUT endpoints', () => {
   });
 
   it('should PUT data route - FAIL: invalid attribute in request body', async (done) => {
-    const response = await request.put(`/api/v1/data/${invalidRequestBody.input}`).send(invalidRequestBody);
+    const response = await request.put(`/data/${invalidRequestBody.input}`).send(invalidRequestBody);
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
@@ -98,7 +98,7 @@ describe('API PUT endpoints', () => {
   });
 
   it('should PUT data route - FAIL: valid attribute in request body, but doesn\'t exist', async (done) => {
-    const response = await request.put(`/api/v1/data/${validRequestBody.payload}`).send(validRequestBody);
+    const response = await request.put(`/data/${validRequestBody.payload}`).send(validRequestBody);
 
     expect(response.status).toBe(500);
     expect(response.body.success).toBe(false);
@@ -109,9 +109,9 @@ describe('API PUT endpoints', () => {
 
 describe('API DELETE endpoints', () => {
   it('should DELETE data: SUCCESS', async (done) => {
-    await request.post('/api/v1/data').send(validRequestBody);
+    await request.post('/data').send(validRequestBody);
 
-    const response = await request.delete(`/api/v1/data/${validRequestBody.payload}`);
+    const response = await request.delete(`/data/${validRequestBody.payload}`);
 
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
@@ -121,7 +121,7 @@ describe('API DELETE endpoints', () => {
   });
 
   it('should DELETE data: FAIL: value not found', async (done) => {
-    const response = await request.delete(`/api/v1/data/${validRequestBody.payload}`);
+    const response = await request.delete(`/data/${validRequestBody.payload}`);
 
     expect(response.status).toBe(500);
     expect(response.body.success).toBe(false);
@@ -134,7 +134,7 @@ describe('API seed/purge endpoints', () => {
   const sampleData = getSampleData().map(d => d.toString());
 
   it('should POST seed data', async (done) => {
-    const response = await request.post('/api/v1/seed');
+    const response = await request.post('/seed');
 
     expect(response.status).toBe(201);
     expect(response.body.success).toBe(true);
@@ -144,7 +144,7 @@ describe('API seed/purge endpoints', () => {
   });
 
   it('should DELETE purge data', async (done) => {
-    const response = await request.delete('/api/v1/seed');
+    const response = await request.delete('/seed');
 
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
@@ -155,8 +155,8 @@ describe('API seed/purge endpoints', () => {
 });
 
 describe('API 404 Endpoint', () => {
-  it('should 404 for any unknown path after /api/v1/*', async (done) => {
-    const response = await request.get('/api/v1/hello');
+  it('should 404 for any unknown path after /*', async (done) => {
+    const response = await request.get('/hello');
     expect(response.status).toBe(404);
     done();
   });

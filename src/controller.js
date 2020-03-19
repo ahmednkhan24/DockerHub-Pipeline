@@ -4,7 +4,7 @@ const data = [];
 
 /*
  * @desc    Get a 200 code with a success message to test API's status
- * @route   GET /api/v1/
+ * @route   GET /
  * @access  Public
 */
 export const getRoot = async (req, res, next) => {
@@ -13,7 +13,7 @@ export const getRoot = async (req, res, next) => {
 
 /*
  * @desc    get all data
- * @route   GET /api/v1/data
+ * @route   GET /data
  * @access  Public
 */
 export const getData = async (req, res, next) => {
@@ -26,7 +26,7 @@ export const getData = async (req, res, next) => {
 
 /*
  * @desc    add data
- * @route   POST /api/v1/data
+ * @route   POST /data
  * @access  Public
 */
 export const postData = async (req, res, next) => {
@@ -44,7 +44,7 @@ export const postData = async (req, res, next) => {
 
 /*
  * @desc    update data
- * @route   PUT /api/v1/data/:id
+ * @route   PUT /data/:id
  * @access  Public
 */
 export const putData = async (req, res, next) => {
@@ -68,7 +68,7 @@ export const putData = async (req, res, next) => {
 
 /*
  * @desc    delete data
- * @route   DELETE /api/v1/data/:id
+ * @route   DELETE /data/:id
  * @access  Public
 */
 export const deleteData = async (req, res, next) => {
@@ -87,7 +87,7 @@ export const deleteData = async (req, res, next) => {
 
 /*
  * @desc    add sample data
- * @route   POST /api/v1/seed
+ * @route   POST /seed
  * @access  Public
 */
 export const seedData = async (req, res, next) => {
@@ -101,7 +101,7 @@ export const seedData = async (req, res, next) => {
 
 /*
  * @desc    delete sample data and free memory
- * @route   DELETE /api/v1/seed
+ * @route   DELETE /seed
  * @access  Public
 */
 export const purgeData = async (req, res, next) => {
@@ -115,7 +115,7 @@ export const purgeData = async (req, res, next) => {
 
 /*
  * @desc    404 Not Found
- * @route   GET /api/v1/*
+ * @route   GET /*
  * @access  Public
 */
 export const notFound = async (req, res, next) => {
