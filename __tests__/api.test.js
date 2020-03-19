@@ -107,6 +107,29 @@ describe('API PUT endpoints', () => {
   });
 });
 
+describe('API DELETE endpoints', () => {
+  it('should DELETE data: SUCCESS', async (done) => {
+    await request.post('/api/v1/data').send(validRequestBody);
+
+    const response = await request.delete(`/api/v1/data/${validRequestBody.payload}`);
+
+    expect(response.status).toBe(200);
+    expect(response.body.success).toBe(true);
+    expect(response.body.count).toEqual(0);
+    expect(response.body.data).toEqual([]);
+    done();
+  });
+
+  it('should DELETE data: FAIL: value not found', async (done) => {
+    const response = await request.delete(`/api/v1/data/${validRequestBody.payload}`);
+
+    expect(response.status).toBe(500);
+    expect(response.body.success).toBe(false);
+    expect(response.body.message).toEqual(notFoundErrorMessage);
+    done();
+  });
+});
+
 describe('API seed/purge endpoints', () => {
   const sampleData = getSampleData().map(d => d.toString());
 
