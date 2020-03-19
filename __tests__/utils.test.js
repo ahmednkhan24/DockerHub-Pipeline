@@ -1,4 +1,4 @@
-import { isObjectEmpty } from '../src/utils';
+import { getErrorMessage, isObjectEmpty } from '../src/utils';
 
 describe('isOjectEmpty', () => {
   it('should return true if given an empty object', () => {
@@ -7,5 +7,19 @@ describe('isOjectEmpty', () => {
 
   it('should return false if given a non-empty object', () => {
     expect(isObjectEmpty({ hello: 'world' })).toBe(false);
+  });
+});
+
+describe('getErrorMessage', () => {
+  it('should return \'Provide Input\' when given error code 400', () => {
+    expect(getErrorMessage(400)).toBe('Provide Input');
+  });
+
+  it('should return \'Not Found\' when given error code 404', () => {
+    expect(getErrorMessage(404)).toBe('Not Found');
+  });
+
+  it('should return \'Not Found\' when given error code 500', () => {
+    expect(getErrorMessage(500)).toBe('Not Found');
   });
 });
