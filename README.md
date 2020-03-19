@@ -1,5 +1,15 @@
 # automate-api-dockerization
 
+DONE
+* CRUD API with unit tests
+
+TODO:
+* Swagger
+* Docker
+* ESLint
+* update readme
+* 
+
 resources used:
 * https://www.restapitutorial.com/httpstatuscodes.html
 * https://stackabuse.com/deploying-node-js-apps-to-aws-ec2-with-docker/
