@@ -68,6 +68,10 @@ describe('API PUT endpoints', () => {
 
     const response = await request.put(`/api/v1/data/${validRequestBody.payload}`).send(updatedValidRequestBody);
     expect(response.status).toBe(200);
+    expect(response.body.success).toBe(true);
+    expect(response.body.count).toEqual(1);
+    expect(response.body.oldValue).toEqual(validRequestBody.payload);
+    expect(response.body.newValue).toEqual(updatedValidRequestBody.payload);
 
     await request.delete('/api/v1/seed');
     done();
