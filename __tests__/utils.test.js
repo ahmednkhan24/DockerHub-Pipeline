@@ -1,4 +1,12 @@
-import { getErrorMessage, isObjectEmpty } from '../src/utils';
+import { getSampleData, getErrorMessage, isObjectEmpty } from '../src/utils';
+
+describe('getSampleData', () => {
+  it('should return a non-empty array', () => {
+    const sampleData = getSampleData();
+    expect(sampleData.length > 0).toBe(true);
+    expect(sampleData.constructor === Array).toBe(true);
+  });
+});
 
 describe('isOjectEmpty', () => {
   it('should return true if given an empty object', () => {
