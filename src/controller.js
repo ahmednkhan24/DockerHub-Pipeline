@@ -119,5 +119,5 @@ export const purgeData = async (req, res, next) => {
  * @access  Public
 */
 export const notFound = async (req, res, next) => {
-  return res.status(404).json({ status: false, 404: getErrorMessage(404) });
+  return res.status(404).json({ 404: getErrorMessage(404) });
 };

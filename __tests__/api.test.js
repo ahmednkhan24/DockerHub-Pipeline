@@ -153,3 +153,11 @@ describe('API seed/purge endpoints', () => {
     done();
   });
 });
+
+describe('API 404 Endpoint', () => {
+  it('should 404 for any unknown path after /api/v1/*', async (done) => {
+    const response = await request.get('/api/v1/hello');
+    expect(response.status).toBe(404);
+    done();
+  });
+});
