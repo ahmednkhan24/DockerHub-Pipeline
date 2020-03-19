@@ -8,7 +8,8 @@ const request = supertest(api);
 const validRequestBody = { payload: 'helloworld' };
 const updatedValidRequestBody = { payload: 'helloworldagain' };
 const invalidRequestBody = { input: 'goodbyeworld' };
-const errorMessage = 'Provide input';
+const inputErrorMessage = 'Provide input';
+const notFoundErrorMessage = 'Not Found';
 
 describe('API GET endpoints', () => {
   it('should GET root route', async (done) => {
@@ -48,7 +49,7 @@ describe('API POST endpoints', () => {
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
-    expect(response.body.message).toEqual(errorMessage);
+    expect(response.body.message).toEqual(inputErrorMessage);
     done();
   });
 
@@ -57,7 +58,7 @@ describe('API POST endpoints', () => {
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
-    expect(response.body.message).toEqual(errorMessage);
+    expect(response.body.message).toEqual(inputErrorMessage);
     done();
   });
 });
@@ -67,6 +68,7 @@ describe('API PUT endpoints', () => {
     await request.post('/api/v1/data').send(validRequestBody);
 
     const response = await request.put(`/api/v1/data/${validRequestBody.payload}`).send(updatedValidRequestBody);
+
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
     expect(response.body.count).toEqual(1);
@@ -74,6 +76,33 @@ describe('API PUT endpoints', () => {
     expect(response.body.newValue).toEqual(updatedValidRequestBody.payload);
 
     await request.delete('/api/v1/seed');
+    done();
+  });
+
+  it('should PUT data route - FAIL: empty request body', async (done) => {
+    const response = await request.put('/api/v1/data/ANY').send({});
+
+    expect(response.status).toBe(400);
+    expect(response.body.success).toBe(false);
+    expect(response.body.message).toEqual(inputErrorMessage);
+    done();
+  });
+
+  it('should PUT data route - FAIL: invalid attribute in request body', async (done) => {
+    const response = await request.put(`/api/v1/data/${invalidRequestBody.input}`).send(invalidRequestBody);
+
+    expect(response.status).toBe(400);
+    expect(response.body.success).toBe(false);
+    expect(response.body.message).toEqual(inputErrorMessage);
+    done();
+  });
+
+  it('should PUT data route - FAIL: valid attribute in request body, but doesn\'t exist', async (done) => {
+    const response = await request.put(`/api/v1/data/${validRequestBody.payload}`).send(validRequestBody);
+
+    expect(response.status).toBe(500);
+    expect(response.body.success).toBe(false);
+    expect(response.body.message).toEqual(notFoundErrorMessage);
     done();
   });
 });
