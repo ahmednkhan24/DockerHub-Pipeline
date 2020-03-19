@@ -1,4 +1,4 @@
-import { isObjectEmpty } from './utils';
+import { getSampleData, isObjectEmpty } from './utils';
 
 const data = [];
 
@@ -84,6 +84,19 @@ export const putData = async (req, res, next) => {
 */
 export const deleteData = async (req, res, next) => {
   return res.status(200).json({delete: 'success'});
+};
+
+export const seedData = async (req, res, next) => {
+  getSampleData().forEach(d => data.push(d));
+  return res.status(201).json({ 
+    success: true,
+    count: data.length,
+    data: data,
+  });
+};
+
+export const purgeData = async (req, res, next) => {
+
 };
 
 /*
