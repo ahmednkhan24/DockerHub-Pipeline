@@ -19,7 +19,7 @@ export const getRoot = async (req, res, next) => {
  * @access  Public
 */
 export const getData = async (req, res, next) => {
-  return res.status(200).json({ 
+  return res.status(200).json({
     success: true,
     count: data.length,
     data: data,
@@ -83,7 +83,20 @@ export const putData = async (req, res, next) => {
  * @access  Public
 */
 export const deleteData = async (req, res, next) => {
-  return res.status(200).json({delete: 'success'});
+  const payload = req.sanitize(req.params.payload).toString();
+  const index = data.indexOf(payload);
+  if (index === -1) {
+    return res.status(500).json({
+      success: false,
+      message: 'Not found',
+    });
+  }
+  data.splice(index, 1);
+  return res.status(200).json({
+    success: true,
+    count: data.length,
+    data: data,
+  });
 };
 
 /*
@@ -92,8 +105,8 @@ export const deleteData = async (req, res, next) => {
  * @access  Public
 */
 export const seedData = async (req, res, next) => {
-  getSampleData().forEach(d => data.push(d));
-  return res.status(201).json({ 
+  getSampleData().forEach(d => data.push(d.toString()));
+  return res.status(201).json({
     success: true,
     count: data.length,
     data: data,
@@ -107,7 +120,7 @@ export const seedData = async (req, res, next) => {
 */
 export const purgeData = async (req, res, next) => {
   data.splice(0, data.length);
-  return res.status(200).json({ 
+  return res.status(200).json({
     success: true,
     count: data.length,
     data: data,
