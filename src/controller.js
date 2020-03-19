@@ -1,4 +1,4 @@
-import { getSampleData, isObjectEmpty } from './utils';
+import { getErrorMessage, getSampleData, isObjectEmpty } from './utils';
 
 const data = [];
 
@@ -31,7 +31,7 @@ export const getData = async (req, res, next) => {
 */
 export const postData = async (req, res, next) => {
   if (isObjectEmpty(req.body) || !req.body.payload) {
-    return res.status(400).json({ success: false, message: 'Provide input' });
+    return res.status(400).json({ success: false, message: getErrorMessage(400) });
   }
   const input = req.sanitize(req.body.payload).toString();
   data.push(input);
@@ -49,13 +49,13 @@ export const postData = async (req, res, next) => {
 */
 export const putData = async (req, res, next) => {
   if (isObjectEmpty(req.body) || !req.body.payload) {
-    return res.status(400).json({ success: false, message: 'Provide input' });
+    return res.status(400).json({ success: false, message: getErrorMessage(400) });
   }
   const oldInput = req.sanitize(req.params.payload).toString();
   const newInput = req.sanitize(req.body.payload).toString();
   const index = data.indexOf(oldInput);
   if (index === -1) {
-    return res.status(500).json({ success: false, message: 'Not Found' });
+    return res.status(500).json({ success: false, message: getErrorMessage(500) });
   }
   data[index] = newInput;
   return res.status(200).json({
@@ -75,7 +75,7 @@ export const deleteData = async (req, res, next) => {
   const payload = req.sanitize(req.params.payload).toString();
   const index = data.indexOf(payload);
   if (index === -1) {
-    return res.status(500).json({ success: false, message: 'Not Found' });
+    return res.status(500).json({ success: false, message: getErrorMessage(500) });
   }
   data.splice(index, 1);
   return res.status(200).json({
@@ -119,5 +119,5 @@ export const purgeData = async (req, res, next) => {
  * @access  Public
 */
 export const notFound = async (req, res, next) => {
-  return res.status(404).json({ status: false, 404: 'Not Found' });
+  return res.status(404).json({ status: false, 404: getErrorMessage(404) });
 };
