@@ -1,11 +1,11 @@
 FROM node:12
 
-WORKDIR /src
+WORKDIR /node-api
 
-COPY package*.json /src/
+COPY package*.json /node-api/
 
 RUN npm install
 
-COPY ./src /src
+COPY ./src /node-api/src
 
 CMD ["npm", "start"]

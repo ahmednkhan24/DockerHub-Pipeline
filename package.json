@@ -11,7 +11,7 @@
   "scripts": {
     "test": "jest --verbose --coverage",
     "dev": "nodemon --exec babel-node ./src/server.js",
-    "start": "babel-node ./server.js"
+    "start": "babel-node ./src/server.js"
   },
   "repository": {
     "type": "git",
