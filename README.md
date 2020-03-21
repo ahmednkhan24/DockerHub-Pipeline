@@ -2,6 +2,9 @@
 
 * `docker build -t my-api .`
 * `docker run -it -p 9000:3000 my-api`
+* `docker run -d -p 9000:3000 my-api`
+* `docker ps`
+* `docker kill <container id>`
 
 DONE
 * CRUD API with unit tests
