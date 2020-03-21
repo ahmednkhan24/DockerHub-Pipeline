@@ -6,6 +6,6 @@ COPY package*.json /node-api/
 
 RUN npm install
 
-COPY ./src /node-api/src
+COPY ./src/ /node-api/src/
 
 CMD ["npm", "start"]

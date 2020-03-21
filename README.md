@@ -1,5 +1,8 @@
 # automate-api-dockerization
 
+* `docker build -t my-api .`
+* `docker run -it -p 9000:3000 my-api`
+
 DONE
 * CRUD API with unit tests
 
