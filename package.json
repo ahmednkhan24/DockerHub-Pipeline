@@ -11,7 +11,7 @@
   "scripts": {
     "test": "jest --verbose --coverage",
     "dev": "nodemon --exec babel-node ./src/server.js",
-    "start": "babel-node ./src/server.js"
+    "start": "babel-node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   "homepage": "https://github.com/ahmednkhan24/automate-api-dockerization#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "dotenv-safe": "^8.2.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-sanitizer": "^1.0.5"
   },

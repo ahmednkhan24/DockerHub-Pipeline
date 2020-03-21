@@ -1,10 +1,10 @@
 import express from 'express';
 import sanitizer from 'express-sanitizer';
 import bodyParser from 'body-parser';
-import dotenvSafe from 'dotenv-safe';
+import dotenv from 'dotenv';
 import routes from './routes';
 
-dotenvSafe.config({ path: '.env' });
+dotenv.config({ path: '.env' });
 
 const api = express();
 api.use(bodyParser.urlencoded({ extended: false }));
