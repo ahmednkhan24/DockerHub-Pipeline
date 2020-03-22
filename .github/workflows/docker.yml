@@ -24,7 +24,6 @@ jobs:
     - run: npm ci
     - run: npm test
     - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - run: docker build . -t $DOCKER_USERNAME/automate-api-dockerization:1.0.0
       env:
         CI: true
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
