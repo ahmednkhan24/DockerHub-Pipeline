@@ -24,7 +24,7 @@ jobs:
     - name: Install NPM Dependencies
       run: |
         npm ci
-    - name: Run Unit Tests
+    - name: Execute Unit Tests
       run: |
         npm test
     - name: Login to DockerHub
