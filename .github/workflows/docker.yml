@@ -1,5 +1,5 @@
 
-# This workflow will do a clean install of node dependencies, runs tests, then push to my Docker Hub account
+# This workflow will push to Docker Hub account
 name: Push to DockerHub CI
 
 on:
