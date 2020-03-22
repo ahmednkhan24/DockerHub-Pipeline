@@ -6,6 +6,7 @@ on:
   push:
     branches: [ master ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,10 +14,6 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-    - env:
-        CI: true
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -26,7 +23,15 @@ jobs:
       run: npm ci
     - name: Execute Unit Tests
       run: npm test
+      env:
+        CI: true
     - name: Login to DockerHub
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build API into a Docker Image
-      run: docker build . -t $DOCKER_USERNAME/automate-api-dockerization:1.0.0
+      run: |
+        docker build . -t $DOCKER_USERNAME/automate-api-dockerization:1.0.0
+        env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
