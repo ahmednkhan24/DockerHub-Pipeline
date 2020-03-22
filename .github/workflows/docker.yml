@@ -1,12 +1,11 @@
 
 # This workflow will do a clean install of node dependencies, runs tests, then push to my Docker Hub account
-name: Node.js API builds to Docker Hub CI
+name: Node.js API to DockerHub CI
 
 on:
   push:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,26 +13,20 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
+    - env:
+        CI: true
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install NPM Dependencies
-      run: |
-        npm ci
+      run: npm ci
     - name: Execute Unit Tests
-      run: |
-        npm test
-      env:
-        CI: true
+      run: npm test
     - name: Login to DockerHub
-      run: |
-        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      env:
-        CI: true
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Build API into a Docker Image
-      run: |
-        docker build . -t akhan227/automate-api-dockerization
+      run: docker build . -t $DOCKER_USERNAME/automate-api-dockerization:1.0.0
