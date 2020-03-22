@@ -11,10 +11,11 @@ DONE
 
 TODO:
 * Swagger
-* Docker
+* Push to Docker Hub via github actions
 * ESLint
 * update readme
-* 
+* Find a way to use ENV variables safely
+
 
 resources used:
 * https://www.restapitutorial.com/httpstatuscodes.html
