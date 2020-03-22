@@ -1,5 +1,5 @@
 
-# This workflow will push to Docker Hub account
+# This workflow will push to Docker Hub
 name: Push to DockerHub CI
 
 on:
