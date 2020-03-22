@@ -1,7 +1,5 @@
 
-# This workflow will do a clean install of node dependencies, 
-# build the source code and run tests across different versions of node
-# then push to my Docker Hub account
+# This workflow will do a clean install of node dependencies, runs tests, then push to my Docker Hub account
 name: Node.js API builds to Docker Hub CI
 
 on:
@@ -27,13 +25,16 @@ jobs:
     - name: Execute Unit Tests
       run: |
         npm test
+      env:
+        CI: true
     - name: Login to DockerHub
       run: |
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Build API into a Docker Image
-      run: |
-        docker build -t akhan227/automate-api-dockerization .
       env:
         CI: true
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build Docker Image
+      run: |
+        docker build . -t akhan227/automate-api-dockerization
