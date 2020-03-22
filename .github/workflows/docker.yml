@@ -31,5 +31,6 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build API into a Docker Image
-      run: |
-        docker build . -t akhan227/automate-api-dockerization:1.0.0
+      run: docker build . -t akhan227/automate-api-dockerization:1.0.0
+    - name: Publish to DockerHub
+      run: docker push akhan227/automate-api-dockerization:1.0.0
