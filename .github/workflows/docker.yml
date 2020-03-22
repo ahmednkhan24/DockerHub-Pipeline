@@ -30,11 +30,10 @@ jobs:
     - name: Login to DockerHub
       run: |
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - name: Build API into a Docker Image
       env:
         CI: true
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Build Docker Image
+    - name: Build API into a Docker Image
       run: |
         docker build . -t akhan227/automate-api-dockerization
