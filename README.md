@@ -8,14 +8,13 @@
 
 DONE
 * CRUD API with unit tests
+* Push to Docker Hub via github actions
 
 TODO:
 * Swagger
-* Push to Docker Hub via github actions
 * ESLint
 * update readme
 * Find a way to use ENV variables safely
-
 
 resources used:
 * https://www.restapitutorial.com/httpstatuscodes.html
@@ -23,4 +22,3 @@ resources used:
 * https://www.youtube.com/watch?v=09lZdSpeHAk
 * https://www.youtube.com/watch?v=CsWoMpK3EtE&t=448s
 * https://blog.cloudboost.io/adding-swagger-to-existing-node-js-project-92a6624b855b
-
