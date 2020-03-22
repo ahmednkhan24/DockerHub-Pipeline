@@ -5,6 +5,7 @@
 * `docker run -d -p 9000:3000 my-api`
 * `docker ps`
 * `docker kill <container id>`
+* `docker-compose up`
 
 DONE
 * CRUD API with unit tests
