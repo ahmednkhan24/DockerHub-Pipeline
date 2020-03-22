@@ -30,8 +30,4 @@ describe('getErrorMessage', () => {
   it('should return \'Not Found\' when given error code 500', () => {
     expect(getErrorMessage(500)).toBe('Not Found');
   });
-
-  it('my failing test', () => {
-    expect(1 + 2).toEqual(5);
-  });
 });
