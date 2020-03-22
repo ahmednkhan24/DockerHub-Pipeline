@@ -23,3 +23,4 @@ resources used:
 * https://www.youtube.com/watch?v=09lZdSpeHAk
 * https://www.youtube.com/watch?v=CsWoMpK3EtE&t=448s
 * https://blog.cloudboost.io/adding-swagger-to-existing-node-js-project-92a6624b855b
+* https://github.com/GenFirst/swagger-to-existing-nodejs-project/blob/master/backend/swagger.json

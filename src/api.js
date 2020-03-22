@@ -12,9 +12,7 @@ const api = express();
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
 api.use(sanitizer());
-
 api.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
-
 api.use(routes);
 
 export default api;
