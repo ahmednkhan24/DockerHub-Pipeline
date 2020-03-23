@@ -9,6 +9,7 @@
     ]
   },
   "scripts": {
+    "lint": "eslint ./",
     "test": "jest --verbose --coverage",
     "dev": "nodemon --exec babel-node ./src/server.js",
     "start": "babel-node ./src/server.js"
@@ -36,6 +37,9 @@
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "babel-polyfill": "^6.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
