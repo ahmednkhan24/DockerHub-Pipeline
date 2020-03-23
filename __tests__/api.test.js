@@ -1,3 +1,5 @@
+
+// eslint-disable-next-line no-unused-vars
 import polyfill from 'babel-polyfill';
 import supertest from 'supertest';
 import api from '../src/api';
@@ -131,7 +133,7 @@ describe('API DELETE endpoints', () => {
 });
 
 describe('API seed/purge endpoints', () => {
-  const sampleData = getSampleData().map(d => d.toString());
+  const sampleData = getSampleData().map((d) => d.toString());
 
   it('should POST seed data', async (done) => {
     const response = await request.post('/seed');
