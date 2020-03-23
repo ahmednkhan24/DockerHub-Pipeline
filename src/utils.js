@@ -8,7 +8,7 @@ const sampleData = [
 const inputError = 'Provide Input';
 const notFoundError = 'Not Found';
 
-export const getErrorMessage = (errCode) => errCode === 400 ? inputError : notFoundError; 
+export const getErrorMessage = (errCode) => (errCode === 400 ? inputError : notFoundError);
 
 export const getSampleData = () => sampleData;
 

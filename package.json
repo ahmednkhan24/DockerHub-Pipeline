@@ -10,7 +10,9 @@
   },
   "scripts": {
     "lint": "eslint ./",
+    "lint-fix": "eslint ./ --fix",
     "test": "jest --verbose --coverage",
+    "predev": "npm lint",
     "dev": "nodemon --exec babel-node ./src/server.js",
     "start": "babel-node ./src/server.js"
   },

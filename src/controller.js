@@ -7,22 +7,18 @@ const data = [];
  * @route   GET /
  * @access  Public
 */
-export const getRoot = async (req, res, next) => {
-  return res.status(200).json({ success: true });
-};
+export const getRoot = async (req, res, next) => res.status(200).json({ success: true });
 
 /*
  * @desc    get all data
  * @route   GET /data
  * @access  Public
 */
-export const getData = async (req, res, next) => {
-  return res.status(200).json({
-    success: true,
-    count: data.length,
-    data: data,
-  });
-};
+export const getData = async (req, res, next) => res.status(200).json({
+  success: true,
+  count: data.length,
+  data,
+});
 
 /*
  * @desc    add data
@@ -38,7 +34,7 @@ export const postData = async (req, res, next) => {
   return res.status(201).json({
     success: true,
     count: data.length,
-    input: input,
+    input,
   });
 };
 
@@ -81,7 +77,7 @@ export const deleteData = async (req, res, next) => {
   return res.status(200).json({
     success: true,
     count: data.length,
-    data: data,
+    data,
   });
 };
 
@@ -91,11 +87,11 @@ export const deleteData = async (req, res, next) => {
  * @access  Public
 */
 export const seedData = async (req, res, next) => {
-  getSampleData().forEach(d => data.push(d.toString()));
+  getSampleData().forEach((d) => data.push(d.toString()));
   return res.status(201).json({
     success: true,
     count: data.length,
-    data: data,
+    data,
   });
 };
 
@@ -109,7 +105,7 @@ export const purgeData = async (req, res, next) => {
   return res.status(200).json({
     success: true,
     count: data.length,
-    data: data,
+    data,
   });
 };
 
@@ -118,6 +114,4 @@ export const purgeData = async (req, res, next) => {
  * @route   GET /*
  * @access  Public
 */
-export const notFound = async (req, res, next) => {
-  return res.status(404).json({ 404: getErrorMessage(404) });
-};
+export const notFound = async (req, res, next) => res.status(404).json({ 404: getErrorMessage(404) });

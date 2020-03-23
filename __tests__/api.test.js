@@ -133,7 +133,7 @@ describe('API DELETE endpoints', () => {
 });
 
 describe('API seed/purge endpoints', () => {
-  const sampleData = getSampleData().map(d => d.toString());
+  const sampleData = getSampleData().map((d) => d.toString());
 
   it('should POST seed data', async (done) => {
     const response = await request.post('/seed');
