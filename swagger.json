@@ -13,8 +13,12 @@
       "description": "Root Route"
     },
     {
-      "name": "Data",
-      "description": "API to Create, Read, Update, and Destroy Data"
+      "name": "Data: Read and Create",
+      "description": "(CR)UD"
+    },
+    {
+      "name": "Data: Update and Destroy",
+      "description": "CR(UD)"
     }
   ],
   "schemes": [
@@ -43,7 +47,7 @@
     "/data": {
       "get": {
         "tags": [
-          "Data"
+          "Data: Read and Create"
         ],
         "summary": "Get all data in the system",
         "responses": {
@@ -54,7 +58,7 @@
       },
       "post": {
         "tags": [
-          "Data"
+          "Data: Read and Create"
         ],
         "summary": "Add a piece of data into the system",
         "parameters": [
@@ -76,6 +80,58 @@
           },
           "400": {
             "description": "Request body is either empty or does not have a payload property"
+          }
+        }
+      }
+    },
+    "/data/{dataToFind}": {
+      "parameters": [
+        {
+          "name": "dataToFind",
+          "in": "path",
+          "required": true,
+          "description": "value in system to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update a piece of data in the system",
+        "tags": [
+          "Data: Update and Destroy"
+        ],
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "description": "New data to update to",
+            "example": {
+              "payload": 3
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data is updated"
+          },
+          "400": {
+            "description": "Request body is either empty or does not have a payload property"
+          },
+          "500": {
+            "description": "System does not contain the given dataToFind"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "Data: Update and Destroy"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           }
         }
       }
