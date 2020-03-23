@@ -19,6 +19,10 @@
     {
       "name": "Data: Update and Destroy",
       "description": "CR(UD)"
+    },
+    {
+      "name": "Seed and Purge",
+      "description": "Insert sample data, or delete all existing data"
     }
   ],
   "schemes": [
@@ -122,16 +126,46 @@
         }
       },
       "delete": {
-        "summary": "Delete user with given ID",
+        "summary": "Delete a piece of data in the system",
         "tags": [
           "Data: Update and Destroy"
         ],
         "responses": {
           "200": {
-            "description": "User is deleted",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "Data is deleted"
+          },
+          "500": {
+            "description": "System does not contain the given dataToFind"
+          }
+        }
+      }
+    },
+    "/seed": {
+      "post": {
+        "tags": [
+          "Seed and Purge"
+        ],
+        "summary": "Insert predefined sample data into the system",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "All sample data inserted into the system"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Seed and Purge"
+        ],
+        "summary": "Delete all data in the system",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "All data deleted from the system"
           }
         }
       }
