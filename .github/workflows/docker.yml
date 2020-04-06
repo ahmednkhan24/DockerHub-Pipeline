@@ -17,6 +17,6 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build Docker Image
-      run: docker build . -t akhan227/basic-crud-api:latest
+      run: docker build . -t $DOCKER_USERNAME/basic-crud-api:latest
     - name: Publish to DockerHub
-      run: docker push akhan227/basic-crud-api:latest
+      run: docker push $DOCKER_USERNAME/basic-crud-api:latest
