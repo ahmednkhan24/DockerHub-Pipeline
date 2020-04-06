@@ -18,3 +18,6 @@ TODO:
 * Find a way to use ENV variables safely with Docker
 * push prod file in dist folder to docker image instead of code
   * https://stackoverflow.com/questions/45471730/how-do-i-run-a-webpack-build-from-a-docker-container
+  
+## Resources Used
+https://www.youtube.com/watch?v=09lZdSpeHAk&t=5s
