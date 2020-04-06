@@ -1,5 +1,7 @@
 # automate-api-dockerization
 
+## Container pushed [here](https://hub.docker.com/repository/docker/akhan227/basic-crud-api)
+
 * `docker build -t my-api .`
 * `docker run -it -p 9000:3000 my-api`
 * `docker run -d -p 9000:3000 my-api`
